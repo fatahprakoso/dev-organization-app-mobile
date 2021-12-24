@@ -18,13 +18,20 @@ public class APIJobService extends android.app.job.JobService {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG, "Run: get data from ...");
+                if(jobCancelled) return;
 //                do fetch api
+
+                jobFinished(params, true);
+                Log.d(TAG, "Finish: get data from ...");
             }
         }).start();
     }
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {
-        return false;
+        Log.d(TAG, "Job cancelled before completion");
+        jobCancelled = true;
+        return true;
     }
 }
