@@ -9,7 +9,18 @@ public class APIJobService extends android.app.job.JobService {
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
+        Log.d(TAG, "Job started");
+        fetchApi(jobParameters);
         return true; // return true for keeping device awake and do a job until finishing entire job
+    }
+
+    private void fetchApi(final JobParameters params){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                do fetch api
+            }
+        }).start();
     }
 
     @Override
